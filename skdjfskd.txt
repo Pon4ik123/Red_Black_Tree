@@ -1,0 +1,40 @@
+int main() {
+    const int MAX_ORDER = 6;
+    List<some_object*> ll; // Create an instance of the List class
+
+    for (int o = 1; o <= MAX_ORDER; o++) {
+        const int n = pow(10, o); // Size of data
+
+        // Adding data to the list
+        clock_t t1 = clock();
+        for (int i = 0; i < n; i++) {
+            some_object* so = new some_object(/* Initialize your some_object here */);
+            ll.createEnd(so); // Add the some_object to the end of the list
+        }
+        clock_t t2 = clock();
+
+        // Printing the current state of the list and timing information
+        cout << "Current List:" << endl;
+        cout << ll << endl;
+        cout << "Time to add " << n << " items: " << double(t2 - t1) / CLOCKS_PER_SEC << " seconds" << endl;
+
+        // Searching and removing from the list
+        const int m = pow(10, 4); // Number of search attempts
+        t1 = clock();
+        for (int i = 0; i < m; i++) {
+            some_object* so = new some_object(/* Initialize your search object here */);
+            ll.findByIndexAndRemove(ll.findByData(so)); // Search for and remove the object from the list
+            delete so;
+        }
+        t2 = clock();
+
+        // Printing the current state of the list and timing information
+        cout << "Current List:" << endl;
+        cout << ll << endl;
+        cout << "Time to search and remove " << m << " items: " << double(t2 - t1) / CLOCKS_PER_SEC << " seconds" << endl;
+
+        ll.deleteList(true); // Clear the list and free the memory of some_object instances
+    }
+
+    return 0;
+}
